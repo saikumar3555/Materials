@@ -1,0 +1,184 @@
+13092019
+--------------------------------
+CUSTOM GENERATOES IN HB
+
+for developing custom generators
+
+the configuration syntax in mappinf file like below
+
+<id name="eno" column="eid" >
+<generator class="pkg.classname.java" />
+
+</id>
+
+we have develop one java class that implemented from IdentifierGenerator (I)
+
+in that class we have to override generate() that returns Serialzable object.
+that value will be stored as a identity value as a pk value in table.
+-------------------------------------------------------------------------------
+14-05-2019
+
+First Level /L1 cache/local cache /session cache
+
+cache holds data for temporary peroid
+it is by default available in hb no need to configure/enable
+it will reduce n/w roundtrips b/w sever and client for multiple times of same request
+
+==================================================================================================================
+Hibernate Tools::
+1)Command LIne Tools
+a.Schema Export
+b.Schema Update
+c.Schema validater
+
+2)Progaramatic and Configuration Approch
+means using "hbm2ddl.auto" property in configuration file
+a.create
+b.update
+c.validate
+d.create-drop
+
+3)GUI tools
+means we have to add one plug in to eclipse IDE in new Software instalation option in eclipse
+
+add plugin to eclipse by using below url
+https://download.jboss.org/jbosstools/neon/stable/updates
+
+for full tutorial watch naresh  it hibernate video
+
+step1::kept ready project with packages and related dependency jars
+
+step2::create configuration file in hibernate prospective wizard
+
+step3::Generate domain class based on table from db using hibernate reverse engineering.
+
+===========================================================================================
+to perform bulk  operations 
+1)HQL
+2)JPQL
+3)Native SQL
+4)Hibernate Criteria Api
+5)JpA Criteria Api
+
+ Native SQL:: 
+
+it is mainly given for to call PLSQL procedures and functions
+
+steps::
+1)prepare procedure in DB
+2)prepare SQL 92 based query in application
+3)call procedure
+
+Procedure::
+
+create or replace procedure p_GET_EMPLOYEE_BY_ID(details out Sys_refcursor,min in number,max in number)as
+begin
+open details for
+SELECT Eid,ename,desg,salary from employee where eid>=min and eid<=max;
+end;
+
+============================================================================================
+
+we can call procedures & functions from  Hibernate in 2 ways
+
+a)Traditional Approch
+
+b)Modern Approch
+
+In Traditional Approch we have to follow some common and data base specific rules to call procedures & functions from HB
+
+common rules
+------------
+follow SQL 92 Syntax
+it not supports for pagenating
+
+specific rules
+--------------
+for oracle DB
+-> for parameter must should be out parameter ,type as a cursor(which holds multiple records)
+->for function must take return typa as a cursor
+
+
+Function::
+-------------
+create or replace function fx_GET_EMP_DETAILS(startRange in number,endRange in number)return
+sys_refcursor as
+details sys_refcursor
+begin
+open detail for
+select * from employee where eid>=startRange and eid<=endRange
+return details;
+end;
+-----------------------------------------------------------------------------------------------
+
+Advanced Mappings in Hibernate:
+1)Component Mapping
+2)Inheritence Mapping
+3)Assosiation Mapping
+
+
+1)Component mapping:: If the domain classes are in composition ,but the tables are don'y have a chance to in composition
+      in this requirement component mapping is reqired.
+
+
+In XML Approch ::<Component > tag is uesd
+
+In Annotation Approch :: @Embedded , @Embeddable Are Required
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

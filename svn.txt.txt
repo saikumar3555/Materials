@@ -1,0 +1,16 @@
+SVN operations
+1.checkout
+2.checkin/commit
+3.Add
+4.Update
+5.delete
+6.diff
+7.show log
+10.locking
+8.Revert
+9.conflict
+
+for SVN we have to download server and client
+
+1.SVN visual server
+2.tortoice client/subclipse plugin

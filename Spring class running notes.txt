@@ -1,0 +1,239 @@
+13052019
+------------------
+Bean Aliasing : 
+
+   (nick name) we can configure more than one names to single bean by using 
+   "name" Attribute with "," or"space " delimeter.
+example:
+
+<bean id="c1,c2 c3,c4" class="pkg.Demo" />
+if we want to configure , or space as a bean name the above approch is not good then we go for <alias> tag
+
+<alias name="c1" alias="c6," />
+
+---------------------------------------------
+14-09-2019
+
+by using Bean Alias we can replaceing the already configured bean classes with another class by alias name one onj from 
+========================================================================
+
+Aware Interfaces::
+
+the class reqires one bean at rum time but we dont know which object it requires at runtime then we go for Aware interfaces.
+
+means we inject IOC into that class
+
+if this concept is not there we have to inject all the classes the target class have a chance to take from those objects
+this approch is not at all recomomded.
+
+Factory Methods in Spring::
+--------------------------- 
+Factory methods are responsible to create objects of same class or different class
+
+two types of factory methods
+1)static factory methods
+
+Connection con=DriverManager.getConnection(-,-,-);
+
+Calender cal=Calander.getInsyance();
+
+2)Instance factory methods
+
+String name="Saikumar apa";
+String subName=name.subStr(0,3);
+
+String name="Saikumar apa";
+Char c=name.charAt(2);
+
+============================================================================================
+Object Life cycle
+------------------
+Car c=new Car(); //object will be created in heap area
+
+some memory is allocated to object in heap area by jvm and gives one address to the object in heap area
+we can access that address(jvm is not memory friendly)
+based on that address jvm will create one hashcode we can access that hashcode by hashcode() method.
+
+when heap memory is running low Jvm will starts the garbage collector thread that is deamon thread means always runs behind the application,
+
+the garbage collector internally works on mark and sweep algorithem
+
+step1::stop the world event 
+step2::identifying the un referenced objects  and marking will take place
+step3::then all objects will be sweeped means removed
+step::then compaction event will be triggered
+      it adjust the memory holes in heap area
+step5::thread will be stoped
+
+step6:: jvm will start
+
+========================================================================================
+Bean Life cycle::
+
+bean life cycle methods--
+if we want make so me logics to execute for specific bean  after initializing bean and before bean ready to destroy 
+we use bean life cycle methods 
+
+we have to write these mwthods and we have to configure
+
+the approches are:::
+1)Programatic
+2)Declarative
+3)Annotation approch
+
+In Programatic approch the class should be implemented from InitializingBean and DisposableBean
+
+from InitialiZingBean we have to override afterPropertiesSet() and
+     destroy() from Disposable Bean
+----------------------------------
+In Declarative Approch we have to configure   "init-method" and "destroy-method"
+for those attributes we have to provide method names as a values
+
+
+for both approches the destroy() will not execute automatically
+so we have to call "registerShutdownHook()" which is available in "ConfigurableApplicationContext(I)"
+
+
+================================================================================================
+BeanPostProcessor::
+
+after creating object for a bean and before initializing bean if we want execute some logics for all beans
+we use "BeanPostProcessor" concept.
+======================================================================================
+
+I 18 N::(Internationalization)
+
+if we want develop our application for global access,every language people to make use our application
+we use i18n standars
+
+Locale: one geograpgical region\
+which conatains CountryCode and LanguageCode
+
+Locale l=new Locale("en","US");
+
+Conetxt.getMessage(key,Object[] obj,Locale); used for get language dependent msg
+
+In Bean Config file
+
+"ResourceBundleMessageSource" class is responsible to achieve i18n
+id should be "messageSource" value shoud be "baseName" we have to provied
+
+
+==============================================================================================================
+Property Editors::
+
+Property Editers are responsible to convert defined values to respective date types. 
+
+for some swituvations it is not going to work ,so we have a option to create custom properties.
+
+for that we have to override "setAsText()" method from PropertyEditorSupport(C) 
+and we have configur "PropertyEditorConfigurable(c)"  in bean confuguration file.
+
+
+======================================================================================================
+Annotations in java
+
+JSE in built Annotations::
+
+@Override
+@Supresswarnings
+@Deprecated
+
+@Target
+@Retention
+@Inherit
+@Documented
+
+
+JEE Annotations::
+
+@WebServlet
+@WebFilter
+@Listener
+etc...
+
+==============================================================================
+@Component      : To make class as Spring Bean
+@Value          : To inject Value into variable
+@Autowirwd      : TO Inject dependent object into target object
+@PostConstruct  : To execute init logic for a bean
+@PreDestroy     : To execute destroy logic
+@DependOn       : To Specify the one bean indirectly depends on onother bean
+@Configuration  : To make java class as configuration class, it serves replacement for
+                  xml configuration
+
+@ComponentScan(basePackages={"pkg1", "pkg2"} : It is ised to scan packages to identify bean classes beased on
+                                                Stereo-type Annotations
+
+@Controller  :To make java class as Spring Controller (Request Handler)
+@RestController :TO make java class as Distributed Component. It is used for B2B comunication.
+
+@Service :To represent java class as spring bean. It is used for business component
+
+@Repository :To represent java class as spring bean. It is used for Persistence Layer
+
+
+
+Stereo-Type Annotations :
+-------------------------
+@Component
+@Controller
+@RestController
+@Service
+@Repository
+
+the all stereo type annotations of functionality is same , means all that annotations configured classes are
+identified as a spring bean , but based on names we uesd those annotations in different layers so Readability will be increased.
+
+
+===================================================================================
+Write Data to Excel file ::
+----------------------
+
+Impotent Interfaces in Poi Api
+
+HSSFDocument
+
+Sheet
+Row
+Cell
+
+steps::
+
+1. create Document / Workbook
+   HSSFWorkbook book=new HSSFWorkbook()
+
+
+2. create Sheet
+   Sheet sheet=book.createSheet()
+
+3. create Row
+   Row row=sheet.createRow(0)
+
+4. create Cell
+   Cell cell=row.createCell(0)  
+
+5.assigned values to cell
+    cell.setCellValue(saiapa)
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+   
+
+
+
+
+
+
+

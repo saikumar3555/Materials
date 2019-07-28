@@ -1,0 +1,34 @@
+Spring MVC
+=====================
+spring mvc components
+
+1.DispatcherServlet
+2.HandlerMapper
+3.Controller
+4.ViewResolver
+5.View
+
+
+------------------------------------------------------------------
+
+using Two Ioc's in mvc
+
+Dispatcher Servlet creates WebApplicationContext Ioc and that creates Objects.
+
+https://howtodoinjava.com/spring5/webmvc/spring5-mvc-hibernate5-example/
+
+
+===========================================================
+18-Jun-2019
+
+Spring Forms::
+below steps are for to create Form Based SpringMVC APPLICATION
+
+step1. create maven web project
+2. add below jars in pom.xml
+   servlet-api
+   spring mvc
+   project lombok
+3.create controller
+4.create jsp, first we have to add spring form tag librery in jsp page
+5.configurer front controller (web.xml)
